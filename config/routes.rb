@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'instagrams/connect'
+
+  get 'instagrams/getData'
+
   get 'home/index'
 
   get 'home/login'
