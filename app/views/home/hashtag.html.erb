@@ -1,1 +1,42 @@
-<%= @tag_recent_medias.inspect %>
+<h1>Hi, <span style="color:red"><%= @user.full_name %></span></h1>
+<%= image_tag @user.profile_picture %>
+<h1>Hashtags: #<%= @tag_name %></h1>
+<h1>Top commented Instagrammer</h1>
+<table border="1">
+  <tr>
+    <th></th>
+    <th>user</th>
+    <th>Comment Count</th>
+  </tr>
+
+  <%
+     i=1
+     @user_tags.each do |user_tag|
+  %>
+      <tr>
+        <td>#<%=i %></td>
+        <td><%= user_tag[0] %></td>
+        <td><%= user_tag[1]   %></td>
+      </tr>
+  <%
+     i+=1
+     end
+  %>
+</table>
+<h1>Recent Comments</h1>
+<center><%= will_paginate @comments %></center>
+<table border="1">
+  <tr>
+    <th>user</th>
+    <th>Comment</th>
+    <th>Comment Date</th>
+  </tr>
+
+  <% @comments.each do |comment|%>
+      <tr>
+        <td><%= comment[0] %></td>
+        <td><%= comment[1] %></td>
+        <td><%= Time.at(Integer(comment[2])).strftime("%H:%M:%S %d/%b/%Y")   %></td>
+      </tr>
+  <%end%>
+</table>

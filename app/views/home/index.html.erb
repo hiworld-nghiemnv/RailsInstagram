@@ -1,7 +1,5 @@
-<h1>Hi, <%= @user.username %></h1>
-<% @recent_media_items.each do |media| %>
-    <img src="<%= media.images.thumbnail.url%>">
-<% end%>
+<h1>Hi, <span style="color:red"><%= @user.full_name %></span></h1>
+<%= image_tag @user.profile_picture %>
 <h1>Hashtags</h1>
 <%= form_tag({action: "index"}, method: "post") do%>
     <%= text_field_tag 'name' %>
@@ -18,7 +16,7 @@
       <tr>
         <td><%=  hashtag.name %></td>
         <td><%=  hashtag.media_count %></td>
-        <td><%=  link_to 'Show', 'https://api.instagram.com/v1/tags/'+hashtag.name+'/media/recent?access_token='+session[:access_token] %></td>
+        <td><%=  link_to 'Show', action: 'hashtag', name: hashtag.name %></td>
       </tr>
   <% end %>
 </table>
